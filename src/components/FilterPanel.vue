@@ -1,5 +1,5 @@
 <template>
-	<section class="filter mb-5 container">
+	<div class="filter">
 		<h4 class="filter__title mb-3">Category:</h4>
 		<ul class="filter-items m-0 p-0 d-flex">
 			<li
@@ -15,7 +15,7 @@
 				{{ item }}
 			</li>
 		</ul>
-	</section>
+	</div>
 </template>
 
 <script>

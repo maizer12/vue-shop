@@ -1,10 +1,10 @@
 <template>
 	<div class="app">
 		<Header />
-		<div>
+		<section class="filter-sort container d-flex mb-5">
 			<filter-panel />
 			<sort />
-		</div>
+		</section>
 		<product-list :loading="loading" :items="products" />
 	</div>
 </template>
@@ -47,4 +47,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.filter-sort {
+	align-items: center;
+	justify-content: space-between;
+}
+</style>

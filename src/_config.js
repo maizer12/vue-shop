@@ -5,3 +5,17 @@ export const filterItems = [
 	'Jewelery',
 	'Electronics',
 ]
+export const sortItems = [
+	{
+		name: 'Rating',
+		value: 'rating',
+	},
+	{
+		name: 'Price',
+		value: 'price',
+	},
+	{
+		name: 'Title',
+		value: 'title',
+	},
+]

@@ -1,24 +1,48 @@
 <template>
 	<div class="btn-group">
 		<button
-			class="btn btn-secondary dropdown-toggle"
+			class="btn btn-dark dropdown-toggle"
 			type="button"
 			data-bs-toggle="dropdown"
 			data-bs-auto-close="true"
 			aria-expanded="false"
 		>
-			Default dropdown
+			Sort by: {{ sort && sort }}
 		</button>
 		<ul class="dropdown-menu">
-			<li><a class="dropdown-item" href="#">Menu item</a></li>
-			<li><a class="dropdown-item" href="#">Menu item</a></li>
-			<li><a class="dropdown-item" href="#">Menu item</a></li>
+			<li
+				:class="['dropdown-item ' + (sort === item.value && 'active')]"
+				:key="item.name"
+				v-for="item in items"
+			>
+				{{ item.name }}
+			</li>
 		</ul>
 	</div>
 </template>
 
 <script>
-export default {}
+import { sortItems } from '@/_config'
+import { mapState } from 'vuex'
+export default {
+	data() {
+		return {
+			items: sortItems,
+		}
+	},
+	computed: {
+		...mapState({
+			sort: state => state.products.sort,
+		}),
+	},
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.dropdown-item {
+	cursor: pointer;
+}
+.dropdown-item.active {
+	background-color: black;
+}
+</style>

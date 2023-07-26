@@ -5,6 +5,7 @@ const postModule = {
 		products: [],
 		isProductsLoading: false,
 		filter: 'All',
+		sort: 'price',
 	}),
 	getters: {},
 	mutations: {
@@ -31,7 +32,9 @@ const postModule = {
 				const response = await axios.get(
 					`https://fakestoreapi.com/products/${category}`,
 					{
-						params: {},
+						params: {
+							sort: state.sort,
+						},
 					}
 				)
 				commit('setProducts', [...state.products, ...response.data])
