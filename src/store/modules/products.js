@@ -55,12 +55,7 @@ const postModule = {
 				const category =
 					state.filter !== 'All' ? 'category/' + state.filter.toLowerCase() : ''
 				const response = await axios.get(
-					`https://fakestoreapi.com/products/${category}`,
-					{
-						params: {
-							sort: state.sort,
-						},
-					}
+					`https://fakestoreapi.com/products/${category}`
 				)
 				commit('setProducts', [...state.products, ...response.data])
 				this.commit('products/setSortProducts')
