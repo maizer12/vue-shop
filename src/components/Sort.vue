@@ -7,12 +7,13 @@
 			data-bs-auto-close="true"
 			aria-expanded="false"
 		>
-			Sort by: {{ sort && sort }}
+			Sort by{{ sort && ': ' + sort }}
 		</button>
 		<ul class="dropdown-menu">
 			<li
 				:class="['dropdown-item ' + (sort === item.value && 'active')]"
 				:key="item.name"
+				@click="setSort(item.value)"
 				v-for="item in items"
 			>
 				{{ item.name }}
@@ -23,7 +24,7 @@
 
 <script>
 import { sortItems } from '@/_config'
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 export default {
 	data() {
 		return {
@@ -33,6 +34,11 @@ export default {
 	computed: {
 		...mapState({
 			sort: state => state.products.sort,
+		}),
+	},
+	methods: {
+		...mapMutations({
+			setSort: 'products/setSort',
 		}),
 	},
 }
