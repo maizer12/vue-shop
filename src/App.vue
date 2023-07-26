@@ -1,30 +1,50 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+	<div class="app">
+		<Header />
+		<div>
+			<filter-panel />
+			<sort />
+		</div>
+		<product-list :loading="loading" :items="products" />
+	</div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapState, mapActions } from 'vuex'
+import ProductList from '@/components/ProductList'
+import Header from '@/components/Header'
+import FilterPanel from '@/components/FilterPanel.vue'
+import Sort from './components/Sort.vue'
 
-nav {
-  padding: 30px;
+export default {
+	components: { ProductList, Header, FilterPanel, Sort },
+	mounted() {
+		this.fetchProducts()
+		window.addEventListener('scroll', this.handleScroll, { passive: true })
+	},
+	beforeDestroy() {
+		window.removeEventListener('scroll', this.handleScroll, { passive: true })
+	},
+	computed: {
+		...mapState({
+			products: state => state.products.products,
+			loading: state => state.products.isProductsLoading,
+		}),
+	},
+	methods: {
+		...mapActions({
+			fetchProducts: 'products/fetchProducts',
+		}),
+		handleScroll(e) {
+			const scrollTop = e.target.documentElement.scrollTop
+			const scrollHeight = e.target.documentElement.scrollHeight
+			const windowHeight = window.innerHeight
+			if (scrollHeight - (scrollTop + windowHeight) < 100 && !this.loading) {
+				this.fetchProducts()
+			}
+		},
+	},
 }
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>

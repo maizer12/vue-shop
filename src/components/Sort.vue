@@ -1,0 +1,24 @@
+<template>
+	<div class="btn-group">
+		<button
+			class="btn btn-secondary dropdown-toggle"
+			type="button"
+			data-bs-toggle="dropdown"
+			data-bs-auto-close="true"
+			aria-expanded="false"
+		>
+			Default dropdown
+		</button>
+		<ul class="dropdown-menu">
+			<li><a class="dropdown-item" href="#">Menu item</a></li>
+			<li><a class="dropdown-item" href="#">Menu item</a></li>
+			<li><a class="dropdown-item" href="#">Menu item</a></li>
+		</ul>
+	</div>
+</template>
+
+<script>
+export default {}
+</script>
+
+<style lang="scss" scoped></style>
