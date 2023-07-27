@@ -1,7 +1,9 @@
 <template>
 	<li class="cart-item d-flex mt-4">
 		<div class="cart-item__left d-flex">
-			<img :src="item.image" :alt="item.name" class="cart-item__img" />
+			<div class="cart-item__images">
+				<img :src="item.image" :alt="item.name" class="cart-item__img" />
+			</div>
 			<div class="cart-item__text">
 				<h5 class="cart-item__name">{{ item.title }}</h5>
 				<h6 class="cart-item__price">price: {{ item.price }}$</h6>
@@ -33,9 +35,17 @@ export default {
 	width: 100%;
 	margin: 0 auto;
 }
-.cart-item__img {
-	max-width: 150px;
+.cart-item__images {
+	min-width: 120px;
+	max-width: 120px;
 	height: 100px;
+	display: flex;
+	justify-content: center;
+}
+.cart-item__img {
+	height: 100%;
+	max-width: 100%;
+	display: block;
 	object-fit: contain;
 }
 .cart-item__left {
