@@ -1,19 +1,20 @@
 <template>
 	<header class="navbar navbar-expand-lg bg-body-tertiary mb-5">
 		<div class="container">
-			<a href="/" class="logo">
+			<router-link to="/" class="logo">
 				<h4 class="logo__icon">Logo</h4>
-			</a>
+			</router-link>
 			<nav class="menu">
-				<a
-					href="#"
+				<router-link
 					class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"
-					>Home</a
+					to="/"
 				>
-				<a
-					href="#"
+					Home</router-link
+				>
+				<router-link
+					to="/cart"
 					class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"
-					>Cart</a
+					>Cart</router-link
 				>
 			</nav>
 		</div>

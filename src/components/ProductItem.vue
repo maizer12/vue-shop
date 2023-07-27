@@ -18,7 +18,7 @@
 				</div>
 				<button
 					@click="addCart(item)"
-					:class="['btn btn-secondary ', isActive(item.id) ? 'btn-danger' : '']"
+					:class="['btn btn-success ', isActive(item.id) ? 'btn-danger' : '']"
 				>
 					{{ isActive(item.id) ? 'Remove Order' : 'Add to Cart' }}
 				</button>
