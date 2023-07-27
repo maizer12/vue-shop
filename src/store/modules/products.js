@@ -68,7 +68,9 @@ const productsModule = {
 					`https://fakestoreapi.com/products/${category}`
 				)
 				commit('setProducts', [...state.products, ...response.data])
-				this.commit('products/updateSortedProducts')
+				if (state.sort) {
+					this.commit('products/updateSortedProducts')
+				}
 			} catch (e) {
 				console.log(e)
 				alert('Server error!')
