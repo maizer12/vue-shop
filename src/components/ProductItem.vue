@@ -16,7 +16,12 @@
 						<p class="rating__text">{{ item.rating.count }}</p>
 					</div>
 				</div>
-				<a href="#" class="btn btn-secondary">Add to Cart</a>
+				<button
+					@click="addCart(item)"
+					:class="['btn btn-secondary ', isActive(item.id) ? 'btn-danger' : '']"
+				>
+					{{ isActive(item.id) ? 'Remove Order' : 'Add to Cart' }}
+				</button>
 			</div>
 		</div>
 	</li>
@@ -24,9 +29,23 @@
 
 <script>
 import StarRating from 'vue-star-rating'
+import { mapMutations, mapState } from 'vuex'
 export default {
 	components: { StarRating },
 	props: { item: Object },
+	computed: {
+		...mapState({
+			cart: state => state.cart.cart,
+		}),
+	},
+	methods: {
+		...mapMutations({
+			addCart: 'cart/addCart',
+		}),
+		isActive(itemId) {
+			return this.cart.find(e => e.id === itemId)
+		},
+	},
 }
 </script>
 
