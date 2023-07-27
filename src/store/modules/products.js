@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const postModule = {
+const productsModule = {
 	state: () => ({
 		products: [],
 		isProductsLoading: false,
@@ -18,23 +18,15 @@ const postModule = {
 		setFilter(state, name) {
 			state.filter = name
 			this.dispatch('products/fetchProducts')
-			this.commit('products/setSortProducts')
+			this.commit('products/updateSortedProducts')
 		},
-		setClearProducts(state) {
-			state.products = []
+		toggleSort(state, value) {
+			state.sort = state.sort !== value ? value : ''
+			this.commit('products/updateSortedProducts')
 		},
-		setSort(state, value) {
-			if (state.sort !== value) {
-				state.sort = value
-				this.commit('products/setSortProducts')
-			} else {
-				state.sort = ''
-				state.products = [...state.products.sort((a, b) => a.id - b.id)]
-			}
-		},
-		setSortProducts(state) {
-			state.products = [
-				...state.products.sort((a, b) => {
+		updateSortedProducts(state) {
+			if (state.sort) {
+				state.products.sort((a, b) => {
 					const one = a[state.sort]?.count ? a[state.sort].count : a[state.sort]
 					const two = b[state.sort]?.count ? b[state.sort].count : b[state.sort]
 					if (typeof one === 'number' && typeof two === 'number') {
@@ -44,8 +36,10 @@ const postModule = {
 					} else {
 						return 0
 					}
-				}),
-			]
+				})
+			} else {
+				state.products.sort((a, b) => a.id - b.id)
+			}
 		},
 	},
 	actions: {
@@ -57,11 +51,27 @@ const postModule = {
 				const response = await axios.get(
 					`https://fakestoreapi.com/products/${category}`
 				)
-				commit('setProducts', [...state.products, ...response.data])
-				this.commit('products/setSortProducts')
+				commit('setProducts', response.data)
 			} catch (e) {
 				console.log(e)
-				alert('Error')
+				alert('Server error!')
+			} finally {
+				commit('setLoading', false)
+			}
+		},
+		async fetchMoreProducts({ state, commit }) {
+			try {
+				commit('setLoading', true)
+				const category =
+					state.filter !== 'All' ? 'category/' + state.filter.toLowerCase() : ''
+				const response = await axios.get(
+					`https://fakestoreapi.com/products/${category}`
+				)
+				commit('setProducts', [...state.products, ...response.data])
+				this.commit('products/updateSortedProducts')
+			} catch (e) {
+				console.log(e)
+				alert('Server error!')
 			} finally {
 				commit('setLoading', false)
 			}
@@ -70,4 +80,4 @@ const postModule = {
 	namespaced: true,
 }
 
-export default postModule
+export default productsModule

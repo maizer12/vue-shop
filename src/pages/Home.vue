@@ -1,9 +1,11 @@
 <template>
-	<section class="filter-sort container d-flex mb-5">
-		<filter-panel />
-		<sort />
-	</section>
-	<product-list :loading="loading" :items="products" />
+	<main class="home">
+		<section class="filter-sort container d-flex mb-5">
+			<filter-panel />
+			<sort />
+		</section>
+		<product-list :loading="loading" :items="products" />
+	</main>
 </template>
 
 <script>
@@ -30,13 +32,14 @@ export default {
 	methods: {
 		...mapActions({
 			fetchProducts: 'products/fetchProducts',
+			fetchMoreProducts: 'products/fetchMoreProducts',
 		}),
 		handleScroll(e) {
 			const scrollTop = e.target.documentElement.scrollTop
 			const scrollHeight = e.target.documentElement.scrollHeight
 			const windowHeight = window.innerHeight
 			if (scrollHeight - (scrollTop + windowHeight) < 100 && !this.loading) {
-				this.fetchProducts()
+				this.fetchMoreProducts()
 			}
 		},
 	},

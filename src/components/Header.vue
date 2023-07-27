@@ -38,4 +38,7 @@ export default {}
 	display: flex;
 	column-gap: 25px;
 }
+.router-link-exact-active {
+	font-weight: 700;
+}
 </style>

@@ -17,7 +17,7 @@
 					</div>
 				</div>
 				<button
-					@click="addCart(item)"
+					@click="switchCart(item)"
 					:class="['btn btn-success ', isActive(item.id) ? 'btn-danger' : '']"
 				>
 					{{ isActive(item.id) ? 'Remove Order' : 'Add to Cart' }}
@@ -41,7 +41,16 @@ export default {
 	methods: {
 		...mapMutations({
 			addCart: 'cart/addCart',
+			removeCart: 'cart/removeCart',
 		}),
+		switchCart(elem) {
+			const checked = this.isActive(elem.id)
+			if (checked) {
+				this.removeCart(elem.id)
+			} else {
+				this.addCart(elem)
+			}
+		},
 		isActive(itemId) {
 			return this.cart.find(e => e.id === itemId)
 		},

@@ -36,11 +36,9 @@ export default {
 	methods: {
 		...mapMutations({
 			setFilter: 'products/setFilter',
-			setClearProducts: 'products/setClearProducts',
 		}),
 		updateFilter(filterName) {
 			this.setFilter(filterName)
-			this.setClearProducts()
 		},
 	},
 	mounted() {},

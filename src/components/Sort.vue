@@ -13,7 +13,7 @@
 			<li
 				:class="['dropdown-item ' + (sort === item.value && 'active')]"
 				:key="item.name"
-				@click="setSort(item.value)"
+				@click="toggleSort(item.value)"
 				v-for="item in items"
 			>
 				{{ item.name }}
@@ -38,7 +38,7 @@ export default {
 	},
 	methods: {
 		...mapMutations({
-			setSort: 'products/setSort',
+			toggleSort: 'products/toggleSort',
 		}),
 	},
 }
