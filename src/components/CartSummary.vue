@@ -33,7 +33,7 @@ export default {
 	},
 	methods: {
 		getSumPrice() {
-			return this.cart.reduce((p, e) => (p += e.price), 0)
+			return Math.round(this.cart.reduce((p, e) => (p += e.price), 0))
 		},
 		alertMessage(message) {
 			alert(message)

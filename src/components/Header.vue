@@ -2,7 +2,7 @@
 	<header class="navbar navbar-expand-lg bg-body-tertiary mb-5">
 		<div class="container">
 			<router-link to="/" class="logo">
-				<h4 class="logo__icon">Logo</h4>
+				<h4 class="logo__icon">Top-Shop</h4>
 			</router-link>
 			<nav class="menu">
 				<router-link

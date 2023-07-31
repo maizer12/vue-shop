@@ -26,7 +26,7 @@ export default {
 .cart-list {
 	list-style: none;
 	padding: 0;
-	min-height: 500px;
+	min-height: 620px;
 	max-height: 620px;
 	overflow: auto;
 }

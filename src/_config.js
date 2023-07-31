@@ -19,3 +19,17 @@ export const sortItems = [
 		value: 'title',
 	},
 ]
+export const header = [
+	{
+		name: 'Home',
+		link: '/',
+	},
+	{
+		name: 'Cart',
+		link: '/',
+	},
+	{
+		name: 'Login',
+		link: '/',
+	},
+]

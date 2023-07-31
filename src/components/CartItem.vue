@@ -9,13 +9,16 @@
 				<h6 class="cart-item__price">price: {{ item.price }}$</h6>
 			</div>
 		</div>
+		<cart-item-calculator :num="item.amount" />
 		<button class="btn btn-danger" @click="removeElem(item.id)">Remove</button>
 	</li>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import CartItemCalculator from './UI/CartItemCalculator.vue'
 export default {
+	components: { CartItemCalculator },
 	props: {
 		item: Object,
 	},
@@ -35,6 +38,10 @@ export default {
 	width: 100%;
 	margin: 0 auto;
 }
+.cart-item-calculator {
+	align-items: center;
+	column-gap: 15px;
+}
 .cart-item__images {
 	min-width: 120px;
 	max-width: 120px;
@@ -51,6 +58,7 @@ export default {
 .cart-item__left {
 	column-gap: 30px;
 	max-width: 500px;
+	width: 100%;
 	align-items: center;
 }
 </style>

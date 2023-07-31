@@ -48,7 +48,7 @@ export default {
 			if (checked) {
 				this.removeCart(elem.id)
 			} else {
-				this.addCart(elem)
+				this.addCart({ ...elem, amount: 1 })
 			}
 		},
 		isActive(itemId) {
